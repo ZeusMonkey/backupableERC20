@@ -83,4 +83,4 @@ deadline is epoch timestamp, and signature will be expired after deadline.
 
 Token deployed on rinkeby testnet
 
-https://rinkeby.etherscan.io/address/0x77754e186785470556e56f65d4851aebc8c8b874
+https://rinkeby.etherscan.io/address/0x24331055d4e790c1a94ec7db77342c557dd491a6

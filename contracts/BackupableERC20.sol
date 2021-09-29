@@ -16,9 +16,9 @@ contract BackupableERC20 is IBackupableERC20 {
     mapping(address => bool) private _blacklisted;
 
     uint256 public override totalSupply;
-    string public name;
-    string public symbol;
-    uint8 public decimals;
+    string private _name;
+    string private _symbol;
+    uint8 private _decimals;
 
     modifier notBlacklisted(address account) {
         require(!_blacklisted[account], "BackupableERC20: blacklisted");
@@ -26,16 +26,16 @@ contract BackupableERC20 is IBackupableERC20 {
     }
 
     constructor(
-        string memory _name,
-        string memory _symbol,
-        uint8 _decimals,
-        uint256 _totalSupply
+        string memory name_,
+        string memory symbol_,
+        uint8 decimals_,
+        uint256 totalSupply_
     ) {
-        name = _name;
-        symbol = _symbol;
-        decimals = _decimals;
+        _name = name_;
+        _symbol = symbol_;
+        _decimals = decimals_;
 
-        _mint(msg.sender, _totalSupply);
+        _mint(msg.sender, totalSupply_);
     }
 
     function _mint(address account, uint256 amount) internal {
@@ -260,6 +260,18 @@ contract BackupableERC20 is IBackupableERC20 {
             keccak256(
                 abi.encodePacked("\x19Ethereum Signed Message:\n32", hash)
             );
+    }
+
+    function name() public view returns (string memory) {
+        return _name;
+    }
+
+    function symbol() public view returns (string memory) {
+        return _symbol;
+    }
+
+    function decimals() public view returns (uint8) {
+        return _decimals;
     }
 
     function balanceOf(address account)
